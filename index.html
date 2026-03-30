@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lahav Dashboard</title>
+<style>
+body{font-family:sans-serif;background:#0b0e14;color:#e2e4ea;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+.box{text-align:center}
+h1{font-size:1.5rem;margin-bottom:12px}
+p{color:#8a8fa5;margin-bottom:20px}
+a{color:#3b82f6;font-size:1.1rem}
+.spinner{width:30px;height:30px;border:3px solid #1f2437;border-top:3px solid #3b82f6;border-radius:50%;animation:spin 1s linear infinite;margin:20px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>Lahav Family Dashboard</h1>
+<div class="spinner"></div>
+<p>Redirecting...</p>
+<p><a id="link" href="http://212.47.76.47:8090">Click here if not redirected</a></p>
+</div>
+<script>
+// Try to load tunnel URL, fallback to direct IP
+fetch('https://raw.githubusercontent.com/LahavRoee/lahav-dashboard/main/tunnel_url.txt')
+  .then(r=>r.text()).then(url=>{
+    url=url.trim();
+    if(url.startsWith('http')){document.getElementById('link').href=url;window.location=url;}
+    else window.location='http://212.47.76.47:8090';
+  }).catch(()=>window.location='http://212.47.76.47:8090');
+</script>
+</body>
+</html>
